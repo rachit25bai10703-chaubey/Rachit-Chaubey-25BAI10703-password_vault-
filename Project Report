@@ -1,1 +1,192 @@
+Project Report – Password Vault (Python)
+
+Author: Rachit Chaubey
+Roll No: 25BAI10703
+
+
+
+
+1. Introduction
+
+In today’s digital life, we use many apps and websites — each needing a unique password.
+Remembering all of them is difficult, and writing them down is unsafe.
+
+To solve this, I built a Password Vault, a simple command-line tool written in Python that securely stores usernames and passwords using strong encryption.
+
+This vault ensures that even if someone gets access to your database file, they cannot read your passwords without the master password.
+
+
+
+
+2. Objective of the Project
+
+To create a secure password storage system.
+
+To apply cryptographic techniques like AES encryption and PBKDF2 key derivation.
+
+To design a simple and user-friendly command-line interface for managing passwords.
+
+To understand how secure applications store sensitive data.
+
+
+
+
+
+3. Key Features
+
+✔ Master Password Protection
+✔ AES Encryption (CFB Mode)
+✔ PBKDF2-HMAC key derivation (100,000 iterations)
+✔ Encrypted SQLite Database
+✔ Clipboard Copy Function
+✔ Simple CLI Commands (init, add, get, list, delete)
+✔ Offline, Local Vault – No Internet Required
+
+
+
+
+4. Technologies Used
+
+Python 3
+
+cryptography library
+
+SQLite
+
+pyperclip
+
+getpass
+
+argparse
+
+
+
+
+5. How the Vault Works (Humanized Explanation)
+
+1. When you run the vault for the first time, it asks you to set a master password.
+
+
+2. The master password is combined with a random salt to generate a secret encryption key using PBKDF2-HMAC.
+
+
+3. Every password you store is encrypted using AES with a fresh random IV (Initialization Vector).
+
+
+4. Encrypted data is saved in an SQLite database.
+
+
+5. When you try to retrieve a password, the vault asks for your master password again to decrypt it.
+
+
+
+This means:
+Only you can decrypt your passwords.
+No one else — not even someone who steals the vault file.
+
+
+
+
+6. Command Overview
+
+1 Initialize the vault
+
+python vault.py init
+
+2 Add a password
+
+python vault.py add --service gmail --username rachit --password MyPass123
+
+3 Retrieve a password
+
+python vault.py get --service gmail
+
+Copy to clipboard:
+
+python vault.py get --service gmail --copy
+
+4 Delete a saved password
+
+python vault.py delete --service gmail
+
+5 List all services
+
+python vault.py list
+
+
+
+
+7. Code Summary (What Each Part Does)
+
+get_master_key()
+
+Reads salt → takes master password input → generates encryption key using PBKDF2.
+
+init_vault()
+
+Creates database → creates salt file → asks user to set master password.
+
+encrypt() / decrypt()
+
+Uses AES encryption to secure and unsecure passwords.
+
+add_credential()
+
+Encrypts password → saves it into the database.
+
+get_credential()
+
+Decrypts stored password → prints it (and copies optionally).
+
+list_services() / delete_credential()
+
+For managing stored entries.
+
+main()
+
+Handles all CLI commands.
+
+
+
+
+8. Security Measures Implemented
+
+AES encryption with a unique IV for every entry
+
+PBKDF2-HMAC with 100,000 iterations
+
+Master password never stored
+
+Salt stored separately
+
+Offline storage for enhanced safety
+
+
+This provides strong protection against:
+. Brute force attacks
+. Database theft
+. Direct password exposure
+
+
+
+
+9. Advantages of This Vault
+
+Lightweight and fast
+
+No external servers
+
+Perfect for personal and academic use
+
+Easy to extend with new features
+
+
+
+10. Conclusion
+
+This project helped me deeply understand how password managers work internally.
+I learned how encryption, hashing, IVs, and key derivation protect sensitive information.
+
+The Password Vault provides a safe and simple solution for storing multiple credentials without depending on third-party apps.
+It highlights how powerful and practical Python can be for building security-based applications.
 
