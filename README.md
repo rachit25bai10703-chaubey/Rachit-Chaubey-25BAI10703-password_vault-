@@ -1,3 +1,0 @@
-# Rachit-Chaubey-25BAI10703-password_vault-
-This program is basically a home-built password manager called CypherVault.
-Think of it like a small offline “vault” that stores all your website passwords, encrypts them, and only unlocks when you type in your master password.This is a locally stored, heavily encrypted, command-line password manager that automatically handles salts, hashing, encryption, clipboard clearing, and password organization.
