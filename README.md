@@ -8,9 +8,8 @@ Simple. Safe. Local.
 Perfect for learning encryption or managing personal passwords.
 
 
----
 
-🌟 Features
+*Features
 
 1 Master password protection
 
